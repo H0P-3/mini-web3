@@ -23,7 +23,7 @@ async fn main() -> std::io::Result<()> {
         blockchain: Mutex::new(Blockchain::new()),
     });
 
-    println!("\n🌐  HTTP node listening on http://127.0.0.1:8080");
+    println!("\n  HTTP node listening on http://127.0.0.1:8080");
     println!("    Endpoints:");
     println!("      GET  /chain");
     println!("      GET  /balance/{{address}}");
@@ -62,11 +62,11 @@ fn demo() {
     // 1. Create wallets
     let alice = Wallet::new();
     let bob   = Wallet::new();
-    println!("🔑  Alice");
+    println!(" Alice");
     println!("    address : {}", alice.address);
     println!("    pub_key : {}\n", &alice.public_key[..16]);
 
-    println!("🔑  Bob");
+    println!(" Bob");
     println!("    address : {}\n", bob.address);
 
     // 2. Boot the chain
@@ -91,18 +91,18 @@ fn demo() {
         signature: sig,
     };
     bc.add_transaction(tx);
-    println!("📨  Alice → Bob  {} coins (signed & queued)", amount);
+    println!("  Alice → Bob  {} coins (signed & queued)", amount);
 
     // 5. Mine the pending transaction
-    println!("⛏️   Mining block #1 …");
+    println!("   Mining block #1 …");
     bc.mine_pending_transactions(&alice.address);
 
-    println!("\n💰  Balances after block #1:");
+    println!("\n  Balances after block #1:");
     println!("    Alice : {} coins", bc.balance_of(&alice.address));
     println!("    Bob   : {} coins", bc.balance_of(&bob.address));
 
     // 6. Validate
-    println!("\n✅  Chain valid? {}", bc.is_valid());
+    println!("\n  Chain valid? {}", bc.is_valid());
     println!("    Blocks  : {}", bc.chain.len());
     println!("────────────────────────────────────────");
 }
